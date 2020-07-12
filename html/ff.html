@@ -1,0 +1,315 @@
+
+            <section>
+                    <h1>Scroll down</h1>
+                  </section>
+                  
+                  <section class="sticky">
+                    <blockquote>"You should totally subscribe to my channel now"<span></span></blockquote>
+                    <img id="office" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2621168/office1.png">
+                    <img id="building" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/2621168/sky.jpg">
+                    <div id="box"></div>
+                  </section>
+                  
+                  <section>
+                    <h1>Scroll up</h1>
+                  </section>
+
+
+
+
+
+        <!--<section class="new">
+                <h1 class="img-title-portfolio" id="portfolio-animation">PORTFOLIO</h1>
+                <div class="white-line" id="white-line-animation"></div>
+                <div class="animated-img" id="img-animation">
+                    <img src="img/journal-img.jpg" id="img-animation" >
+                    <h1 class="img-title-new-section left" id="img-title-left-text">Yanis</h1>
+                    <h1 class="img-title-new-section right" id="img-title-right-text">Journy</h1>
+            
+                    
+                    <button class="section-new-button">
+                        Contact us
+                        <div class="section-new-button__horizontal"></div>
+                        <div class="section-new-button__vertical"></div>
+                    </button>
+                </div>
+                </section>-->
+            
+                
+    <script>
+        var tl = new TimelineMax({onUpdate:updatePercentage});
+        var tl2 = new TimelineMax();
+        const controller = new ScrollMagic.Controller();
+
+        tl.from('blockquote', .5, {x:200, opacity: 0});
+        tl.from('span', 1, { width: 0}, "=-.5");
+        tl.from('#office', 1, {x:-200, opacity: 0,ease: Power4.easeInOut}, "=-1");
+        tl.from('#building', 1, {x:200, opacity: 0, ease: Power4.easeInOut}, "=-.7");
+
+        tl2.from("#box", 1, {opacity: 0, scale: 0});
+        tl2.to("#box", .5, {left: "20%", scale: 1.3, borderColor: 'white', borderWidth: 12, boxShadow: '1px 1px 0px 0px rgba(0,0,0,0.09)'})
+
+        const scene = new ScrollMagic.Scene({
+        triggerElement: ".sticky",
+                    triggerHook: "onLeave",
+                    duration: "100%"
+        })
+        .setPin(".sticky")
+        .setTween(tl)
+                .addTo(controller);
+
+        const scene2 = new ScrollMagic.Scene({
+        triggerElement: "blockquote"
+        })
+        .setTween(tl2)
+                .addTo(controller);
+
+
+        function updatePercentage() {
+        //percent.innerHTML = (tl.progress() *100 ).toFixed();
+        tl.progress();
+        console.log(tl.progress());
+        }
+</script>
+
+
+@import url("https://fonts.googleapis.com/css?family=Arapey");
+body {
+  margin: 0;
+  font-family: 'Arapey';
+}
+body h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-top: 30%;
+}
+
+section {
+  padding: 3em;
+  height: 100vh;
+  position: relative;
+  box-sizing: border-box;
+}
+section blockquote {
+  font-size: 2.3em;
+  width: 30%;
+  margin-top: 17%;
+  position: absolute;
+}
+section blockquote span {
+  width: 100%;
+  background: red;
+  display: block;
+  height: 5px;
+  margin-top: 20px;
+}
+section img {
+  position: absolute;
+}
+section img:nth-of-type(1) {
+  width: 40%;
+  right: 0;
+  top: 20%;
+}
+section img:nth-of-type(2) {
+  width: 25%;
+  right: 40%;
+  top: 29%;
+  margin-top: 15%;
+}
+
+section:nth-child(odd) {
+  background: #f1f1f1;
+}
+
+.sticky {
+  background: white !important;
+}
+
+.percentage {
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+}
+
+#box {
+  width: 100px;
+  height: 100px;
+  position: absolute;
+  border: 5px solid lightgray;
+  margin: auto;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**body,html {
+    margin: 0;
+    padding: 0;
+
+}
+.new {
+    display: block;
+    padding: 0;
+    margin: 0;
+    background: #000000;
+    position: relative;
+    top:200%;
+    left:0;
+    height: 120%;
+}
+
+.img-title-portfolio {
+    color : white;
+    font-size: 18px;
+    position: relative;
+    top: 10%;
+    left: 46%;
+
+}
+
+.white-line {
+    border-left: 2px solid white;
+    height: 70px;
+    position: relative;
+    left:50%;
+    top:10%;
+}
+
+.animated-img {
+    position: relative;
+    top:0;
+    left:0;
+}
+
+.animated-img img {
+    margin: 0;
+    padding: 0;
+    width:auto;
+    height: 424px;
+    position: absolute;
+    top:20px;
+    left :40%;
+}
+
+.img-title-new-section  {
+    font-size: 72px;
+    font-weight: 900;
+    color: white;
+    
+    
+}
+
+.left {
+    position: relative;
+    top:200px;
+    left: 30%;
+   
+}
+
+.right {
+    position: relative;
+    top:200px;
+    left: 55%;
+}
+
+/*section-btn*/
+
+
+  
+
+  /***********/
+
+/**
+
+  .section-new-button {
+    --offset: 10px;
+    --border-size: 2px;
+    display: block;
+    position: relative;
+    top:0;
+    left:65%;
+    padding: 1.5em 3em;
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+    border: 0;
+    background: transparent;
+    color: #ebebeb;
+    text-transform: uppercase;
+    letter-spacing: .25em;
+    outline: none;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 0;
+    box-shadow: inset 0 0 0 var(--border-size) currentcolor;
+    -webkit-transition: background .8s ease;
+    transition: background .8s ease;
+  }
+  .section-new-button:hover {
+    background: rgba(100, 0, 0, 0.03);
+  }
+  .section-new-button__horizontal, .section-new-button__vertical {
+    position: absolute;
+    top: var(--horizontal-offset, 0);
+    right: var(--vertical-offset, 0);
+    bottom: var(--horizontal-offset, 0);
+    left: var(--vertical-offset, 0);
+    -webkit-transition: -webkit-transform .8s ease;
+    transition: -webkit-transform .8s ease;
+    transition: transform .8s ease;
+    transition: transform .8s ease, -webkit-transform .8s ease;
+    will-change: transform;
+  }
+  .section-new-button__horizontal::before, .section-new-button__vertical::before {
+    content: '';
+    position: absolute;
+    border: inherit;
+  }
+  .section-new-button__horizontal {
+    --vertical-offset: calc(var(--offset) * -1);
+    border-top: var(--border-size) solid currentcolor;
+    border-bottom: var(--border-size) solid currentcolor;
+  }
+  .section-new-button__horizontal::before {
+    top: calc(var(--vertical-offset) - var(--border-size));
+    bottom: calc(var(--vertical-offset) - var(--border-size));
+    left: calc(var(--vertical-offset) * -1);
+    right: calc(var(--vertical-offset) * -1);
+  }
+  .section-new-button:hover .section-new-button__horizontal {
+    -webkit-transform: scaleX(0);
+            transform: scaleX(0);
+  }
+  .section-new-button__vertical {
+    --horizontal-offset: calc(var(--offset) * -1);
+    border-left: var(--border-size) solid currentcolor;
+    border-right: var(--border-size) solid currentcolor;
+  }
+  .section-new-button__vertical::before {
+    top: calc(var(--horizontal-offset) * -1);
+    bottom: calc(var(--horizontal-offset) * -1);
+    left: calc(var(--horizontal-offset) - var(--border-size));
+    right: calc(var(--horizontal-offset) - var(--border-size));
+  }
+  .section-new-button:hover .section-new-button__vertical {
+    -webkit-transform: scaleY(0);
+            transform: scaleY(0);
+  }**/
